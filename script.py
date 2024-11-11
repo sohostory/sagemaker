@@ -30,3 +30,12 @@ df = df.sample(frac=0.05,random_state=1)
 
 df = df.reset_index(drop=True)
 #This is where the tip ends
+
+encode_dict = {}
+
+def encode_cat(x):
+    if x not in encode_dict.keys():
+        encode_dict[x] = len(encode_dict)
+    return encode_dict[x]
+
+df['ENCODE_CAT'] = df['CATEGORY'].apply(lambda x: encode_cat(x))
